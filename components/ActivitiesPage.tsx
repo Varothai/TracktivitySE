@@ -4,7 +4,7 @@ import { db } from '../firestore/firebase';
 import { formatDate } from '../utils/formatDate';
 import { skillColors } from '../utils/skillColors';
 import TracktivityBG from '../public/TracktivityBG.png';
-import { CmuOAuthBasicInfo } from './CmuOAuthBasicInfo';
+//import { CmuOAuthBasicInfo } from './CmuOAuthBasicInfo';
 import axios from 'axios';
 import Link from 'next/link';
 import styles from './ActivitiesPage.module.css';

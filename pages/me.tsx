@@ -1,7 +1,7 @@
 //@ts-nocheck
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useGetUserData } from "@/hooks/useGetUserData";
+import { getUserData } from "@/hooks/useGetUserData";
 import { useEffect, useState } from "react";
 import { CmuOAuthBasicInfo } from "@/types/CmuOAuthBasicInfo";
 import AdminPage from "@/components/AdminPage";
@@ -13,20 +13,20 @@ export default function MePage() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await useGetUserData(); // Call useGetUserData directly in useEffect
+      const data = await getUserData();
       if (data.ok) {
         setUserData(data);
-      } else {
-        router.push("/");
-      }
+      } else router.push("/");
     }
     fetchData();
   }, [router]);
 
   console.log(userData);
-
+  
   function signOut() {
-    // Call sign out API without caring about the result
+    //Call sign out api without caring what is the result
+    //It will fail only in case of client cannot connect to server
+    //This is left as an exercise for you. Good luck.
     axios.post("/api/signOut").finally(() => {
       router.push("/");
     });
