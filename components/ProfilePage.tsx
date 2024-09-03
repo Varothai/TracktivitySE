@@ -5,7 +5,7 @@ import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { db, storage } from '../firestore/firebase';
 import RadarChart from './RadarChart';
 import Link from 'next/link';
-import { CmuOAuthBasicInfo } from './CmuOAuthBasicInfo';
+import { CmuOAuthBasicInfo } from '../types/CmuOAuthBasicInfo';
 import { useRouter } from 'next/router';
 
 interface Skill {
