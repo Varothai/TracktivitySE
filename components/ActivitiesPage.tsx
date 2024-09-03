@@ -174,10 +174,12 @@ const ActivitiesPage: React.FC = () => {
                       {activity.imageUrls.map((url, index) => (
                         <div key={index} className="relative group w-64 h-64">
                           <div key={index} className="relative group w-64 h-64">
-                            <Image
+                            <img
                               src={url}
                               alt={`Activity Image ${index + 1}`}
                               className="w-full h-full object-cover border border-gray-300 rounded-lg shadow-sm transition-transform transform group-hover:scale-105"
+                              // layout="fill"  // Ensures the image fills the container
+                              // objectFit="cover"  // Ensures the image is covered properly
                             />
                           </div>
                         </div>
