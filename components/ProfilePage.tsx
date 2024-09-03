@@ -71,12 +71,12 @@ const ProfilePage: React.FC = () => {
   axios.get<User>('/api/whoAmI')
     .then((response) => {
       if (response.data) {
-        setUserData(response.data);
+        setUserData(response.data as CmuOAuthBasicInfo); // Casting the type
       }
     })
     .catch((error) => {
       console.error("Error fetching user data:", error);
-    });
+  });
 
   listAll(imagesListRef).then((response) => {
     response.items.forEach((item) => {
