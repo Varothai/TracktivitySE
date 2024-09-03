@@ -76,7 +76,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ skills = [] }) => {
     },
     plugins: {
       legend: {
-        position: 'top'
+        position: 'top' as const, // Use 'as const' to assert the type
       },
       tooltip: {
         callbacks: {
@@ -88,7 +88,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ skills = [] }) => {
     }
   };
 
-  return <Radar data={data} options={options} />;
+  return <Radar data={data} />;
 };
 
 export default RadarChart;
