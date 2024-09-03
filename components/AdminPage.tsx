@@ -73,7 +73,34 @@ function AdminPage() {
             </div>
           </div>
         </div>
-      </div>
+
+        {/* Main Content */}
+     <div className="flex flex-col h-screen" style={{ fontFamily: 'Garamond, serif' }}>
+       <div className="flex-1 p-8 flex flex-col items-center justify-start bg-no-repeat bg-cover bg-center" style={{ backgroundImage: 'url(/Welcome.png)' }}>
+         {/* Welcome Section */}
+         <div className="text-center mb-8" style={{ marginTop: '60px', fontFamily: 'Trebuchet MS' }}>
+           <h2 className="text-5xl font-bold text-white mb-2">Welcome to </h2>
+           <h1 className="text-8xl font-bold text-white mb-5">TRACKTIVITY</h1>
+           <p className="text-lg text-white">Track and manage your activities effortlessly</p>
+         </div>
+       </div>
+
+
+       {/* Get Started Section */}
+       <div className="absolute bottom-1 left-16 bg-opacity-75 p-6 rounded text-left" style={{ fontFamily: 'Trebuchet MS, sans-serif' }}>
+         <h2 className="text-2xl font-semibold text-yellow-500 mb-4">Get Started with Tracktivity</h2>
+         <p className="text-gray-200 max-w-2xl">Tracktivity helps students and administrators manage and track student activities, certificates, and skill development. Streamline the submission process, enable efficient review and approval, visualize skill development, and facilitate activity publicizing.</p>
+       </div>
+
+
+       {/* Join Tracktivity Section */}
+       <div className="absolute bottom-16 right-16 bg-opacity-75 p-6 rounded text-right" style={{ fontFamily: 'Trebuchet MS, sans-serif' }}>
+         <h2 className="text-2xl font-semibold text-yellow-500 mb-4">Join Tracktivity Today</h2>
+         <p className="text-gray-200 max-w-xl">Start tracking and managing your activities now to enhance your skills and get recognized for your achievements.</p>
+       </div>
+     </div>
+
+    </div>
   );
 }
 

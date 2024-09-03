@@ -63,15 +63,15 @@ export default function IndexPage() {
          </div>
 
 
-     <div style={{ margin: '2rem 0' }}>
-       <p style={{
-         fontSize: '1rem',
-         maxWidth: '600px',
-         margin: '0 auto'
-       }}>
-         An activity record system that streamlines the process of tracking and managing activities that occur within CMU's engineering department.
-       </p>
-     </div>
+         <div style={{ margin: '2rem 0' }}>
+            <p style={{
+              fontSize: '1rem',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}>
+              An activity record system that streamlines the process of tracking and managing activities that occur within CMU&apos;s engineering department.
+            </p>
+          </div>
 
 
      <div style={{
