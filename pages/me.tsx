@@ -12,16 +12,20 @@ export default function MePage() {
   const [userData, setUserData] = useState<CmuOAuthBasicInfo | null>(null);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const data = await useGetUserData();
       if (data.ok) {
         setUserData(data);
-      } else router.push("/");
-    }
+      } else {
+        router.push("/");
+      }
+    };
+
     fetchData();
   }, [router]);
 
   console.log(userData);
+
   function signOut() {
     //Call sign out api without caring what is the result
     //It will fail only in case of client cannot connect to server
@@ -35,7 +39,7 @@ export default function MePage() {
     <div className="p-3">
       {userData?.role === "student" && (
         <div>
-          <AdminPage />
+          <StudentPage />
         </div>
       )}
       {userData?.itaccounttype_EN === "MIS Employee" && (
