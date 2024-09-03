@@ -9,6 +9,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import styles from './ActivitiesPage.module.css';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 interface User {
   firstname_EN: string;
@@ -172,11 +173,13 @@ const ActivitiesPage: React.FC = () => {
                     <div className="flex flex-wrap justify-center space-x-4 space-y-4">
                       {activity.imageUrls.map((url, index) => (
                         <div key={index} className="relative group w-64 h-64">
-                          <img
-                            src={url}
-                            alt={`Activity Image ${index + 1}`}
-                            className="w-full h-full object-cover border border-gray-300 rounded-lg shadow-sm transition-transform transform group-hover:scale-105"
-                          />
+                          <div key={index} className="relative group w-64 h-64">
+                            <Image
+                              src={url}
+                              alt={`Activity Image ${index + 1}`}
+                              className="w-full h-full object-cover border border-gray-300 rounded-lg shadow-sm transition-transform transform group-hover:scale-105"
+                            />
+                          </div>
                         </div>
                       ))}
                     </div>
