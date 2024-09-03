@@ -12,21 +12,21 @@ export default function MePage() {
   const [userData, setUserData] = useState<CmuOAuthBasicInfo | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await useGetUserData();
+    async function fetchData() {
+      const data = await useGetUserData(); // Call useGetUserData directly in useEffect
       if (data.ok) {
         setUserData(data);
-      } else router.push("/");
+      } else {
+        router.push("/");
+      }
     }
     fetchData();
   }, [router]);
 
   console.log(userData);
-  
+
   function signOut() {
-    //Call sign out api without caring what is the result
-    //It will fail only in case of client cannot connect to server
-    //This is left as an exercise for you. Good luck.
+    // Call sign out API without caring about the result
     axios.post("/api/signOut").finally(() => {
       router.push("/");
     });
