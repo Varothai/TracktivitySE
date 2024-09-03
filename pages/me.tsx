@@ -9,7 +9,7 @@ import StudentPage from "@/components/StudentPage";
 
 export default function MePage() {
   const router = useRouter();
-  const [userData, setUserData] = useState<CmuOAuthBasicInfo>(undefined);
+  const [userData, setUserData] = useState<CmuOAuthBasicInfo | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -19,7 +19,7 @@ export default function MePage() {
       } else router.push("/");
     }
     fetchData();
-  }, []);
+  }, [router]);
 
   console.log(userData);
   function signOut() {
