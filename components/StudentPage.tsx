@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { CmuOAuthBasicInfo } from './CmuOAuthBasicInfo';
+import { CmuOAuthBasicInfo } from '../types/CmuOAuthBasicInfo';
 import User from './User.png';
 import { useRouter } from 'next/router';
 
