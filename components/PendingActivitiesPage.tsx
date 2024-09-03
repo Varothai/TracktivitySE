@@ -149,7 +149,7 @@ function PendingActivitiesPage() {
         <div className="flex-0">
           <li>
             <Link href="/pending-activities" className="btn btn-ghost text-xl text-white">
-              Students' Pending Activities
+              Students&#39; Pending Activities
             </Link>
           </li>
         </div>
