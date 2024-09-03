@@ -1,7 +1,7 @@
 //@ts-nocheck
 import axios from "axios";
 import { useRouter } from "next/router";
-import { getUserData } from "@/hooks/useGetUserData";
+import { useGetUserData } from "@/hooks/useGetUserData";
 import { useEffect, useState } from "react";
 import { CmuOAuthBasicInfo } from "@/types/CmuOAuthBasicInfo";
 import AdminPage from "@/components/AdminPage";
@@ -13,7 +13,7 @@ export default function MePage() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getUserData();
+      const data = await useGetUserData();
       if (data.ok) {
         setUserData(data);
       } else router.push("/");
