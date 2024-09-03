@@ -318,7 +318,7 @@ const PostActivityPage: React.FC = () => {
               </div>
 
               <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-                <h3 className="text-lg text-red-800 font-bold mb-2">Upload Certificates</h3>
+                <h3 className="text-lg text-red-800 font-bold mb-2">Upload Activity Image</h3>
                 <input
                   type="file"
                   accept="image/*"
