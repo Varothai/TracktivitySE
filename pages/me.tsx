@@ -12,7 +12,7 @@ export default function MePage() {
   const [userData, setUserData] = useState<CmuOAuthBasicInfo | null>(null);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const data = await useGetUserData();
       if (data.ok) {
         setUserData(data);
