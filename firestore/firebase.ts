@@ -13,7 +13,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: "tracktivity-ed944",
+  projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: "tracktivity-ed944.appspot.com",
   messagingSenderId: "585185398205",
   appId: "1:585185398205:web:706beaa231eea24b4096d4",
@@ -28,4 +28,7 @@ const storage = getStorage(app);
 export const db = getFirestore(app);
 // const auth = getAuth(app);
 
+console.log('process.env.FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID);
 export { app, firestore, storage };
+
+console.log('process.env.FIREBASE_API_KEY:', process.env.FIREBASE_API_KEY);
