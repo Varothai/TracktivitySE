@@ -87,7 +87,7 @@ export default function IndexPage() {
          <p>ชั้น 4 ตึก 30 ปี คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
          <p>239 ถนนห้วยแก้ว ตำบลสุเทพ อำเภอเมือง จังหวัดเชียงใหม่ 50200</p>
          <p>Tel: 0-5394-2023, 08-4614-0006 Fax: 0-5394-2072</p>
-         <p>cpe at eng dot cmu dot ac dot th</p>
+         <p>cpe.eng.cmu.ac.th</p>
        </div>
        <div style={{ textAlign: 'right', marginRight: '1rem' }}>
          <p>E-SIEHUB</p>
