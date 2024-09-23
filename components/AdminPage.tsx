@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import CMUEng from '../public/CMUEng.jpg';
 
 function AdminPage() {
   const router = useRouter();
@@ -60,10 +61,8 @@ function AdminPage() {
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Admin Avatar"
-                    src="https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg"
-                    width={40}
-                    height={40}
+                    alt="Admin"
+                    src="/CMUEng.jpg"
                   />
                 </div>
               </div>

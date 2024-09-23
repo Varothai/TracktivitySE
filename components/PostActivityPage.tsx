@@ -199,11 +199,9 @@ const PostActivityPage: React.FC = () => {
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Admin Avatar"
-                    src="https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg"
-                    width={40}
-                    height={40}
-                  />
+                      alt="Admin"
+                      src="/CMUEng.jpg"
+                    />
                 </div>
               </div>
               <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">

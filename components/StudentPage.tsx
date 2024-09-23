@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { CmuOAuthBasicInfo } from '../types/CmuOAuthBasicInfo';
-import User from './User.png';
+import User from '../public/User.png';
 import { useRouter } from 'next/router';
 
 function StudentPage() {
@@ -79,7 +79,7 @@ function StudentPage() {
               <div className="w-10 rounded-full">
                 <img
                   alt="User"
-                  // src="/User.png"
+                  src="/User.png"
                 />
               </div>
             </div>

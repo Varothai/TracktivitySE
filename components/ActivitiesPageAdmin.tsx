@@ -7,6 +7,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+
 interface User {
   firstname_EN: string;
   lastname_EN: string;
@@ -68,6 +69,7 @@ const ActivitiesPage: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen">
+      <div style={{ backgroundImage: 'url(/TracktivityBG.png)', backgroundSize: 'cover' }}>
       {/* Navbar */}
       <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50">
         <div className="flex-1">
@@ -112,12 +114,10 @@ const ActivitiesPage: React.FC = () => {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img
-                  alt="Admin Avatar"
-                  src="https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg"
-                  width={40}
-                  height={40}
-                />
+                  <img
+                    alt="Admin"
+                    src="/CMUEng.jpg"
+                  />
               </div>
             </div>
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">
@@ -199,6 +199,7 @@ const ActivitiesPage: React.FC = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };
