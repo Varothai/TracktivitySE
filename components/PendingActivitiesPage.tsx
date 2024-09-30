@@ -42,7 +42,14 @@ interface Activity {
 function PendingActivitiesPage() {
   const [pendingActivities, setPendingActivities] = useState<Activity[]>([]);
   const router = useRouter();  
+  const rubricLink = 'https://docs.google.com/spreadsheets/d/1d56duW1NtohrWGKjZvy1jsIf9ssFABh8o-WeFJ3O2kY/edit?usp=sharing';
   
+  
+  const handleViewRubric = () => {
+    // Opens the rubric in a new tab
+    window.open(rubricLink, '_blank');
+  };
+
   const signOut = async () => {
     try {
       console.log('Attempting to sign out...');
@@ -124,9 +131,10 @@ function PendingActivitiesPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-black">
       {/* Navbar */}
-      <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50">
+      <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50"
+      style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight: 'bold' }}>
         <div className="flex-1">
           <Link href="/admin-page" className="btn btn-ghost text-xl text-white">
             ADMIN DASHBOARD
@@ -171,6 +179,18 @@ function PendingActivitiesPage() {
       </div>
 
       <h2 className="text-3xl font-bold mb-6 text-red-800">Pending Activities</h2>
+
+      {/* View Rubric Button */}
+      <div className="mb-8 flex justify-center">
+        <button
+          type="button" // Prevents form submission
+          onClick={handleViewRubric}
+          className="bg-blue-600 text-white text-lg rounded-full px-5 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
+        >
+          View Skills Rubric
+        </button>
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {pendingActivities.map((activity) => (
           <div key={activity.id} className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 flex flex-col">

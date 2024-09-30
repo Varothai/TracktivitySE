@@ -28,7 +28,6 @@ const storage = getStorage(app);
 export const db = getFirestore(app);
 // const auth = getAuth(app);
 
-console.log('process.env.FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID);
+
 export { app, firestore, storage };
 
-console.log('process.env.FIREBASE_API_KEY:', process.env.FIREBASE_API_KEY);

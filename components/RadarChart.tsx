@@ -76,7 +76,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ skills = [] }) => {
     },
     plugins: {
       legend: {
-        position: 'top' as const, // Use 'as const' to assert the type
+        position: 'top' as const, 
       },
       tooltip: {
         callbacks: {

@@ -21,7 +21,7 @@ export default function MePage() {
     fetchData();
   }, [router]);
 
-  console.log(userData);
+  //console.log(userData);
   
   function signOut() {
     //Call sign out api without caring what is the result

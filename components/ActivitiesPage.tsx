@@ -82,21 +82,24 @@ const ActivitiesPage: React.FC = () => {
         <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50">
           <div className="flex-1">
             <span className="text-xl text-white font-semibold">
-              <Link href="/student-page" className="btn btn-ghost text-xl text-white">
+              <Link href="/student-page" className="btn btn-ghost text-xl text-white"
+              style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight: 'bold' }}>
                 {userData ? `${userData.firstname_EN} ${userData.lastname_EN}` : "UserName"}
               </Link>
             </span>
           </div>
           <div className="flex-1">
             <li>
-              <Link href="/activities" className="btn btn-ghost text-xl text-white">
+              <Link href="/activities" className="btn btn-ghost text-xl text-white"
+              style={{ fontFamily: '"Times New Roman", Times, serif'}}>
                 Activities Page
               </Link>
             </li>
           </div>
           <div className="flex-1">
             <li>
-              <Link href="/profile-page" className="btn btn-ghost text-xl text-white">
+              <Link href="/profile-page" className="btn btn-ghost text-xl text-white"
+              style={{ fontFamily: '"Times New Roman", Times, serif'}}>
                 Profile Page
               </Link>
             </li>
@@ -121,7 +124,8 @@ const ActivitiesPage: React.FC = () => {
         <div className="flex mt-20">
           {/* Sidebar on the left */}
           <div className="w-1/4 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-700 mb-6">Filter Activities</h2>
+            <h2 className="text-2xl font-bold text-gray-700 mb-6"
+            >Filter Activities</h2>
             <div className="space-y-4">
               {Object.keys(skillColors).map(skill => (
                 <button

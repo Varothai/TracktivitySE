@@ -55,6 +55,13 @@ const ProfilePage: React.FC = () => {
   const [profileImage, setProfileImage] = useState<File | null>(null);
   // const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState('/default-profile.png');
+  const [errorMessage, setErrorMessage] = useState('');
+  const rubricLink = 'https://docs.google.com/spreadsheets/d/1d56duW1NtohrWGKjZvy1jsIf9ssFABh8o-WeFJ3O2kY/edit?usp=sharing';
+
+  const handleViewRubric = () => {
+    // Opens the rubric in a new tab
+    window.open(rubricLink, '_blank');
+  };
 
   const signOut = async () => {
     try {
@@ -166,6 +173,13 @@ useEffect(() => {
     e.preventDefault();
 
     const { name, description, skills, file } = activityData;
+
+    // Validation: Check if the required fields are filled and at least one skill is selected
+    if (!name || !description || skills.length === 0) {
+      setErrorMessage('Please select at least one skill.'); 
+      return; // Stop further execution if validation fails
+    }
+
     const newActivity: Omit<Activity, 'id' | 'fileUrl'> = {
       name,
       description,
@@ -177,6 +191,7 @@ useEffect(() => {
       lastname: userData?.lastname_EN || '',
       studentId: userData?.student_id || '',
     };
+
 
     try {
       let fileUrl: string | null = null;
@@ -239,7 +254,7 @@ useEffect(() => {
 
   const saveImageUrlToDatabase = async (url: any) => {
     try {
-      const userDocRef = doc(db, 'users', 'USER_ID'); // Replace USER_ID with the actual user ID
+      const userDocRef = doc(db, 'users', 'USER_ID'); 
       await setDoc(userDocRef, { profileImageUrl: url }, { merge: true });
     } catch (error) {
       console.error('Error saving image URL to database:', error);
@@ -248,7 +263,7 @@ useEffect(() => {
 
   const fetchProfileImageUrl = async () => {
     try {
-      const userDocRef = doc(db, 'users', 'USER_ID'); // Replace USER_ID with the actual user ID
+      const userDocRef = doc(db, 'users', 'USER_ID'); 
       const docSnap = await getDoc(userDocRef);
       if (docSnap.exists()) {
         return docSnap.data().profileImageUrl || '/default-profile.png';
@@ -301,6 +316,7 @@ useEffect(() => {
           <Link
             href="/student-page"
             className="btn btn-ghost text-xl text-white"
+            style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight: 'bold' }}
           >
             {userData ? `${userData.firstname_EN} ${userData.lastname_EN}` : "UserName"}
           </Link>
@@ -311,6 +327,7 @@ useEffect(() => {
             <Link
               href="/activities"
               className="btn btn-ghost text-xl text-white"
+              style={{ fontFamily: '"Times New Roman", Times, serif' }}
             >
               Activities Page
             </Link>
@@ -321,6 +338,7 @@ useEffect(() => {
             <Link
               href="/profile-page"
               className="btn btn-ghost text-xl text-white"
+              style={{ fontFamily: '"Times New Roman", Times, serif'}}
             >
               Profile Page
             </Link>
@@ -370,10 +388,18 @@ useEffect(() => {
           >
             Add Activity
           </button>
+          <button
+                type="button" // Prevents form submission
+                onClick={handleViewRubric}
+                className="bg-blue-600 text-white text-lg rounded-full px-5 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
+            >
+                View Skill Rubric
+            </button>
         </div>
 
         <div className="flex-1">
-          <h2 className="text-2xl font-bold mb-4 text-blue-900">Skills Radar Chart</h2>
+          <h2 className="text-2xl mb-4 text-blue-900"
+          style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight:'bold' }}>Skills Radar Chart</h2>
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <RadarChart skills={allSkills} />
           </div>
@@ -496,6 +522,7 @@ useEffect(() => {
                         </option>
                       ))}
                     </select>
+                    <label className="block text-sm font-semibold mb-1 text-blue-700">Level of Skill</label>
                     <input
                       type="number"
                       min="1"
@@ -524,7 +551,7 @@ useEffect(() => {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="file">
-                  Attach File
+                  Attach Certificate File
                 </label>
                 <input
                   type="file"
@@ -548,6 +575,11 @@ useEffect(() => {
                 >
                   Submit
                 </button>
+                {errorMessage && (
+                    <p className="bg-red-100 text-red-700 border border-red-300 rounded-md p-2 mt-2 text-center font-bold">
+                        {errorMessage}
+                    </p>
+                )}
               </div>
             </form>
           </div>

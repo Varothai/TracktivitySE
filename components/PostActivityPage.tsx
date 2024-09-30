@@ -153,9 +153,10 @@ const PostActivityPage: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-opacity-70">
-      <div style={{ backgroundImage: 'url(/TracktivityBG.png)', backgroundSize: 'auto' }}>
+      <div style={{ backgroundImage: 'url(/TracktivityBG.png)', backgroundSize: 'cover' }}>
       {/* Navbar */}
-      <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50">
+      <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50"
+      style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight: 'bold' }}>
         <div className="flex-1">
           <Link
               href="/admin-page"
@@ -212,45 +213,140 @@ const PostActivityPage: React.FC = () => {
         </div>
 
 
-        <h2 className="text-2xl text-red-800 font-bold mb-10 mt-20">Post New Activity</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <h2
+          className="text-4xl font-bold mb-10 text-center"
+          style={{
+            marginTop: '100px',
+            color: '#ffffff', // Text color is now white
+            fontFamily: '"Times New Roman", Times, serif',
+            fontWeight: 'bold',
+            textShadow: `
+              0 0 5px #00ffee, 
+              0 0 10px #00ffee, 
+              0 0 15px #00ffee, 
+              0 0 20px #00ffee
+            ` // Aura effect
+          }}
+        >
+          Post New Activity
+        </h2>
+
+<form onSubmit={handleSubmit} className="space-y-6 mt-[-0px]">
           <div className="flex justify-between">
             <div className="w-1/2 pr-2">
-              <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-              <h3 className="text-lg text-red-800 font-bold mb-2">Activity Name</h3>
+              <div className="p-6 border border-gray-300 rounded-3xl mb-6 bg-gray shadow-md"
+              style={{
+
+                boxShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>
+                        <h3
+                  className="text-lg text-white mb-2"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                    marginTop: '-10px', // Adjust this value as needed
+                    textShadow: `
+                      0 0 5px #00ffee, 
+                      0 0 10px #00ffee, 
+                      0 0 15px #00ffee, 
+                      0 0 20px #00ffee
+                    ` // Aura effect
+                  }}
+                >
+                  Activity Name
+                </h3>
+
                 <input
                   type="text"
                   name="name"
                   value={activity.name}
                   onChange={handleChange}
                   placeholder="Activity Name"
-                  className="border border-gray-300 px-4 py-2 rounded w-full"
+                  className="border border-gray-300 px-4 py-2 rounded-full w-full"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+              
+                  }}
                 />
               </div>
-              <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-              <h4 className="text-lg text-red-800 font-bold mb-2">Activity Description</h4>
+              <div className="p-6 border border-gray-300 rounded-3xl mb-6 bg-gray shadow-md"
+              style={{
+
+                boxShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>
+              <h4 className="text-lg mb-2"
+              style={{
+                marginTop: '-5px',
+                color: '#ffffff', // Text color is now white
+                fontFamily: '"Times New Roman", Times, serif',
+                textShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>Activity Description</h4>
                 <textarea
                   name="description"
                   value={activity.description}
                   onChange={handleChange}
                   placeholder="Description"
-                  className="border border-gray-300 px-4 py-2 rounded w-full h-32"
+                  className="border border-gray-300 px-4 py-2 rounded-3xl w-full h-32"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+              
+                  }}
                 />
               </div>
-              <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-                <h3 className="text-lg text-red-800 font-bold mb-2">Date</h3>
+              <div className="p-6 border border-gray-300 rounded-3xl mb-6 bg-gray shadow-md"
+              style={{
+
+                boxShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>
+                <h3 className="text-lg mb-2"
+                style={{
+                  marginTop: '1px',
+                  color: '#ffffff', // Text color is now white
+                  fontFamily: '"Times New Roman", Times, serif',
+                  textShadow: `
+                    0 0 5px #00ffee, 
+                    0 0 10px #00ffee, 
+                    0 0 15px #00ffee, 
+                    0 0 20px #00ffee
+                  ` // Aura effect
+                }}>Date</h3>
                 {activity.dates.map((date, index) => (
                   <div key={index} className="flex items-center mb-2">
                     <input
                       type="date"
                       value={date}
                       onChange={(e) => handleDateChange(index, e)}
-                      className="border border-gray-300 px-4 py-2 rounded w-full"
+                      className="border border-gray-300 px-4 py-2 rounded-full w-full"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     />
                     <button
                       type="button"
                       onClick={() => removeDate(index)}
-                      className="ml-2 text-red-500 hover:text-red-700"
+                      className="ml-2 bg-red-500 text-white hover:bg-red-700 rounded-full px-4 py-1 mt-2"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     >
                       Remove
                     </button>
@@ -259,7 +355,14 @@ const PostActivityPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={addDate}
-                  className="bg-green-500 text-white px-4 py-2 rounded"
+                  className="text-white px-3 py-1 rounded-full ml-0"
+                  style={{
+                    background: '#00FF66', // Set base background color
+                    fontFamily: '"Times New Roman", Times, serif',
+                    transition: 'background-color 0.1s', // Smooth transition for hover effect
+                  }}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.backgroundColor = '#33CC66')} // Set hover background color
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.backgroundColor = '#00FF66')} // Reset background on hover out
                 >
                   Add Date
                 </button>
@@ -267,15 +370,38 @@ const PostActivityPage: React.FC = () => {
             </div>
 
             <div className="w-1/2 pl-2">
-              <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-                <h3 className="text-lg text-red-800 font-bold mb-2">Skills</h3>
+              <div className="p-6 border border-gray-300 rounded-3xl mb-6 bg-gray shadow-md"
+              style={{
+
+                boxShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>
+                <h3 className="text-lg mb-2"
+                style={{
+                  marginTop: '1px',
+                  color: '#ffffff', // Text color is now white
+                  fontFamily: '"Times New Roman", Times, serif',
+                  textShadow: `
+                    0 0 5px #00ffee, 
+                    0 0 10px #00ffee, 
+                    0 0 15px #00ffee, 
+                    0 0 20px #00ffee
+                  ` // Aura effect
+                }}>Skills</h3>
                 {activity.skills.map((skill, index) => (
                   <div key={index} className="mb-4">
                     <select
                       name="name"
                       value={skill.name}
                       onChange={(e) => handleSkillChange(index, e)}
-                      className="border border-gray-300 px-4 py-2 rounded w-full mb-2"
+                      className="border border-gray-300 px-4 py-2 rounded-full w-full mb-2"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     >
                       <option value="">Select Skill</option>
                       {SKILLS_OPTIONS.map((option, i) => (
@@ -288,7 +414,10 @@ const PostActivityPage: React.FC = () => {
                       name="level"
                       value={skill.level}
                       onChange={(e) => handleSkillChange(index, e)}
-                      className="border border-gray-300 px-4 py-2 rounded w-full"
+                      className="border border-gray-300 px-4 py-2 rounded-full w-full"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     >
                       <option value="">Select Level</option>
                       {LEVEL_OPTIONS.map((level, i) => (
@@ -300,30 +429,67 @@ const PostActivityPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => removeSkill(index)}
-                      className="ml-2 text-red-500 hover:text-red-700 mt-2"
+                      className="ml-2 bg-red-500 text-white hover:bg-red-700 rounded-full px-4 py-1 mt-2"
+                      style={{
+                        marginLeft: '450px',
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     >
                       Remove
                     </button>
+
                   </div>
                 ))}
                 <button
                   type="button"
                   onClick={addSkill}
-                  className="bg-green-500 text-white px-4 py-2 rounded"
+                  className="text-white px-3 py-1 rounded-full ml-2.5"
+                  style={{
+                    background: '#00FF66', // Set base background color
+                    fontFamily: '"Times New Roman", Times, serif',
+                    transition: 'background-color 0.1s', // Smooth transition for hover effect
+                  }}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.backgroundColor = '#33CC66')} // Set hover background color
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.backgroundColor = '#00FF66')} // Reset background on hover out
                 >
                   Add Skill
                 </button>
+
               </div>
 
-              <div className="p-6 border border-gray-300 rounded-lg mb-6 bg-white shadow-md">
-                <h3 className="text-lg text-red-800 font-bold mb-2">Upload Activity Image</h3>
+              <div className="p-6 border border-gray-300 rounded-3xl mb-6 bg-gray shadow-md"
+              style={{
+
+                boxShadow: `
+                  0 0 5px #00ffee, 
+                  0 0 10px #00ffee, 
+                  0 0 15px #00ffee, 
+                  0 0 20px #00ffee
+                ` // Aura effect
+              }}>
+                <h3 className="text-lg mb-4"
+                style={{
+                  fontFamily: '"Times New Roman", Times, serif',
+                  marginTop: '-5px', // Adjust this value as needed
+                  color: '#ffffff',
+                  textShadow: `
+                    0 0 5px #00ffee, 
+                    0 0 10px #00ffee, 
+                    0 0 15px #00ffee, 
+                    0 0 20px #00ffee
+                  ` // Aura effect
+                }}>Upload Activity Image</h3>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
                   multiple
-                  className="border border-gray-300 px-4 py-2 rounded w-full mb-4"
+                  className="border border-gray-300 bg-white px-4 py-1 rounded-full w-full mb-0 text-black focus:outline-none focus:border-blue-500" // Set margin-bottom to 0
+                  style={{ fontFamily: '"Times New Roman", Times, serif', marginBottom: '-10px' }} // Change font and add negative margin
                 />
+
+                  
+                /{'>'}
                 {imagePreviews.map((preview, index) => (
                   <div key={index} className="relative mb-2">
                     <img
@@ -343,12 +509,24 @@ const PostActivityPage: React.FC = () => {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded"
-          >
-            Post Activity
-          </button>
+          <div className="flex justify-center"> {/* Flex container to center the button */}
+            <button
+              type="submit"
+              className="text-white px-4 py-2 rounded-full ml-2. mb-5"
+              style={{
+                background: '#00FF66', // Set base background color
+                fontSize: '1.5vw',
+                fontFamily: '"Times New Roman", Times, serif',
+                fontWeight:'bold',
+                transition: 'background-color 0.1s', // Smooth transition for hover effect
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.backgroundColor = '#33CC66')} // Set hover background color
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.backgroundColor = '#00FF66')} // Reset background on hover out
+            >
+              Post Activity
+            </button>
+          </div>
+
         </form>
       </div>
     </div>
