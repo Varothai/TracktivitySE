@@ -131,16 +131,14 @@ const ActivitiesPage: React.FC = () => {
                 <button
                   key={skill}
                   onClick={() => setFilter(skill)}
-                  className={`${skillColors[skill]} hover:bg-opacity-75 text-white font-semibold py-2 px-4 rounded-full w-full transition`}
-                >
-                  {skill}
+                  className={`${skillColors[skill]} hover:bg-opacity-60 text-white font-semibold py-2 px-4 rounded-full w-full transition`}
+                >{skill}
                 </button>
               ))}
               <button
                 onClick={() => setFilter('')}
-                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full w-full transition"
-              >
-                Show All
+                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full w-full transition"
+              >Show All
               </button>
             </div>
           </div>

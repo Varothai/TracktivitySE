@@ -113,10 +113,11 @@ const ActivitiesPage: React.FC = () => {
     }
   };
 
+
   const handleDateChange = (index: number, newDate: string) => {
     if (formValues && formValues.dates) {
       const updatedDates = [...formValues.dates];
-      updatedDates[index] = newDate; // Update the specific date
+      updatedDates[index] = new Date(newDate); // Convert the string to a Date object
       setFormValues({
         ...formValues,
         dates: updatedDates, // Update the dates in formValues
@@ -130,6 +131,14 @@ const ActivitiesPage: React.FC = () => {
       setFormValues({ ...formValues, dates: newDates });
     }
   };
+
+  const deleteDate = (index: number) => {
+    if (formValues) {
+      const newDates = formValues.dates.filter((_, i) => i !== index); // Remove the date at the specified index
+      setFormValues({ ...formValues, dates: newDates }); // Update the state with the new dates array
+    }
+  };
+  
   
   const addSkill = () => {
     if (formValues) {
@@ -331,13 +340,19 @@ const ActivitiesPage: React.FC = () => {
               <div className="mb-4">
                 <label className="block mb-2 font-semibold">Change the Date Here</label>
                 {formValues?.dates.map((date, index) => (
-                  <div key={index} className="flex mb-2">
+                  <div key={index} className="flex mb-2 items-center">
                     <input
                       type="date"
                       value={formatDate(date.toString())}
                       onChange={(e) => handleDateChange(index, e.target.value)}
                       className="border border-gray-300 rounded w-full p-2 mr-2 focus:ring-2 focus:ring-green-500 transition duration-200"
                     />
+                    <button
+                      onClick={() => deleteDate(index)} 
+                      className="bg-red-500 text-white font-semibold py-1 px-3 rounded hover:bg-red-600 transition duration-200"
+                    >
+                      Delete
+                    </button>
                   </div>
                 ))}
               </div>

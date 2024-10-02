@@ -131,7 +131,7 @@ function PendingActivitiesPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-black">
+    <div className="flex flex-col min-h-screen bg-cover bg-center" style={{ backgroundImage: `url('/TracktivityBG.png')` }}>
       {/* Navbar */}
       <div className="navbar bg-customColor1 text-primary-content p-4 fixed top-0 left-0 w-full z-50"
       style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight: 'bold' }}>
@@ -178,14 +178,38 @@ function PendingActivitiesPage() {
         </div>
       </div>
 
-      <h2 className="text-3xl font-bold mb-6 text-red-800">Pending Activities</h2>
+      <h2 className="text-3xl font-bold text-red-800"
+        style={{
+          fontFamily: '"Times New Roman", Times, serif',
+          color: '#ffffff',
+          marginTop: '100px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textShadow: `
+                    0 0 5px #00ffee, 
+                    0 0 10px #00ffee, 
+                    0 0 15px #00ffee, 
+                    0 0 20px #00ffee
+                  `
+        }}
+      >Pending Activities</h2>
 
       {/* View Rubric Button */}
       <div className="mb-8 flex justify-center">
         <button
           type="button" // Prevents form submission
           onClick={handleViewRubric}
-          className="bg-blue-600 text-white text-lg rounded-full px-5 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
+          className="text-white px-4 py-2 rounded-full mt-4"
+              style={{
+                background: '#00FF66', // Set base background color
+                fontSize: '1.5vw',
+                fontFamily: '"Times New Roman", Times, serif',
+                fontWeight:'bold',
+                transition: 'background-color 0.1s', // Smooth transition for hover effect
+              }}
+            onMouseEnter={(e) => ((e.target as HTMLElement).style.backgroundColor = '#33CC66')} // Set hover background color
+            onMouseLeave={(e) => ((e.target as HTMLElement).style.backgroundColor = '#00FF66')} // Reset background on hover out
         >
           View Skills Rubric
         </button>
@@ -193,9 +217,17 @@ function PendingActivitiesPage() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {pendingActivities.map((activity) => (
-          <div key={activity.id} className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 flex flex-col">
-            <h3 className="text-2xl font-bold text-red-800 mb-4">{activity.name}</h3>
-            <p className="text-gray-700 mb-4">{activity.description}</p>
+          <div key={activity.id} className="bg-white border border-gray-300 rounded-3xl shadow-lg p-6 flex flex-col">
+            <h3 className="text-2xl font-bold text-red-800 mb-4"
+              style={{
+                fontFamily: '"Times New Roman", Times, serif',
+              }}
+            >{activity.name}</h3>
+            <p className="text-gray-700 mb-3 -mt-3"
+              style={{
+                fontFamily: '"Times New Roman", Times, serif',
+              }}
+            >{activity.description}</p>
 
             <ul className="mb-4 space-y-2">
               {activity.skills.map((skill, index) => (
@@ -203,7 +235,10 @@ function PendingActivitiesPage() {
                   <select
                     value={skill.name}
                     onChange={(e) => handleSkillChange(activity.id, index, 'name', e.target.value)}
-                    className="border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="border border-gray-300 px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                   >
                     {SKILLS.map((option, optionIndex) => (
                       <option key={optionIndex} value={option.name}>
@@ -217,49 +252,75 @@ function PendingActivitiesPage() {
                     onChange={(e) =>
                       handleSkillChange(activity.id, index, 'level', parseInt(e.target.value))
                     }
-                    className="border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-20 text-center"
+                    className="border border-gray-300 px-3 py-1 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 w-20 text-center"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
                     min="1"
                     max="5"
                   />
                   <button
                     onClick={() => deleteSkill(activity.id, index)}
-                    className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500"
-                  >
-                    Delete
+                    className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                        transition: 'background-color 0.1s', // Smooth transition for hover effect
+                      }}
+                  >Delete
                   </button>
                 </li>
               ))}
             </ul>
             {activity.fileUrl && (
-              <div className="mt-4">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Certificate File:</h4>
+              <div className="-mt-2">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
+                >Certificate File:</h4>
                 <a
                   href={activity.fileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:text-blue-800 underline"
-                >
-                  View File
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                >View File
                 </a>
               </div>
             )}
-            <div className="flex mt-4 justify-end gap-4">
+            <div className="flex mt-1 justify-end gap-4">
               <button
                 onClick={() => addSkill(activity.id)}
-                className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500"
-              >
-                Add Skill
+                className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                    transition: 'background-color 0.1s', // Smooth transition for hover effect
+                  }}
+              >Add Skill
               </button>
               <button
                 onClick={() => approveActivity(activity.id)}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Approve
+                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                    transition: 'background-color 0.1s', // Smooth transition for hover effect
+                  }}
+              >Approve
               </button>
             </div>
             <div className="mt-4">
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Submitted by:</h4>
-              <p className="text-gray-700">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2"
+                style={{
+                  fontFamily: '"Times New Roman", Times, serif',
+                }}
+              >Submitted by:</h4>
+              <p className="text-gray-700"
+                style={{
+                  fontFamily: '"Times New Roman", Times, serif',
+                }}
+              >
                 {activity.firstname} {activity.lastname} ({activity.studentId})
               </p>
             </div>

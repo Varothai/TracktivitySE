@@ -379,21 +379,39 @@ useEffect(() => {
                 />
               </div>
             </label>
-            <p className="text-2xl text-blue-800 font-bold">
+            <p className="text-2xl text-blue-800 font-bold mt-3"
+              style={{
+                fontFamily: '"Times New Roman", Times, serif',
+              }}
+            >
               {userData ? `${userData.firstname_EN} ${userData.lastname_EN}` : 'User Name'}
             </p>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-blue-800 text-white text-lg rounded-md hover:bg-indigo-600 hover:font-bold btn btn-primary border-none mt-4 w-40 shadow-lg"
-          >
+            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-3"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                    fontSize: '1.5vw',
+                    fontWeight:'bold',
+                    transition: 'background-color 0.1s', // Smooth transition for hover effect
+                  }}
+              >
             Add Activity
           </button>
           <button
                 type="button" // Prevents form submission
                 onClick={handleViewRubric}
-                className="bg-blue-600 text-white text-lg rounded-full px-5 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
-            >
-                View Skill Rubric
+                className="text-white px-4 py-2 rounded-full mt-3"
+              style={{
+                background: '#00FF66', // Set base background color
+                fontSize: '1.5vw',
+                fontFamily: '"Times New Roman", Times, serif',
+                fontWeight:'bold',
+                transition: 'background-color 0.1s', // Smooth transition for hover effect
+              }}
+            onMouseEnter={(e) => ((e.target as HTMLElement).style.backgroundColor = '#33CC66')} // Set hover background color
+            onMouseLeave={(e) => ((e.target as HTMLElement).style.backgroundColor = '#00FF66')} // Reset background on hover out
+        >View Skill Rubric
             </button>
         </div>
 
@@ -408,16 +426,37 @@ useEffect(() => {
 
       <div className="mt-8 flex flex-col lg:flex-row lg:space-x-8">
         <div className="lg:w-1/2">
-          <h3 className="text-xl font-bold mb-2 text-blue-900">Pending Activities</h3>
+          <h3 className="text-xl mb-2 text-blue-900"
+            style={{
+              fontFamily: '"Times New Roman", Times, serif',
+              fontWeight: 'bold',
+            }}
+          >Pending Activities</h3>
           {pendingActivities.length > 0 ? (
             <ul>
               {pendingActivities.map((activity) => (
                 <li key={activity.id} className="mb-4 p-4 bg-white rounded-lg shadow-md">
-                  <h4 className="text-lg font-semibold">{activity.name}</h4>
-                  <p className="text-gray-700">{activity.description}</p>
+                  <h4 className="text-lg font-semibold -mt-2"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                  >{activity.name}</h4>
+                  <p className="text-gray-700"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                  >{activity.description}</p>
                   <div>
-                    <p className="text-sm font-semibold text-blue-800">Skills:</p>
-                    <ul className="list-disc ml-6 text-gray-700">
+                    <p className="text-sm font-semibold text-blue-800"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >Skills:</p>
+                    <ul className="list-disc ml-6 text-gray-700"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >
                       {activity.skills.map((skill, index) => (
                         <li key={index}>{skill.name} - Level {skill.level}</li>
                       ))}
@@ -425,31 +464,64 @@ useEffect(() => {
                   </div>
                   {activity.fileUrl && (
                     <div className="mt-2">
-                      <a href={activity.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                        View Attached File
+                      <a href={activity.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline"
+                        style={{
+                          fontFamily: '"Times New Roman", Times, serif',
+                        }}
+                      >View Attached File
                       </a>
                     </div>
                   )}
-                  <p className={`mt-2 text-sm ${getStatusClass(activity.status)}`}>{activity.status}</p>
+                  <p className={`mt-2 text-sm ${getStatusClass(activity.status)}`}
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                  >{activity.status}</p>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500">No pending activities</p>
+            <p className="text-gray-500"
+              style={{
+                fontFamily: '"Times New Roman", Times, serif',
+              }}
+            >No pending activities</p>
           )}
         </div>
 
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <h3 className="text-xl font-bold mb-2 text-blue-900">Approved Activities</h3>
+          <h3 className="text-xl mb-2 text-blue-900"
+          style={{
+            fontFamily: '"Times New Roman", Times, serif',
+            fontWeight: 'bold',
+          }}
+          >Approved Activities</h3>
           {approvedActivities.length > 0 ? (
             <ul>
               {approvedActivities.map((activity) => (
                 <li key={activity.id} className="mb-4 p-4 bg-white rounded-lg shadow-md">
-                  <h4 className="text-lg font-semibold">{activity.name}</h4>
-                  <p className="text-gray-700">{activity.description}</p>
+                  <h4 className="text-lg font-semibold -mt-2"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                      fontWeight: 'bold',
+                    }}
+                  >{activity.name}</h4>
+                  <p className="text-gray-700"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                  >{activity.description}</p>
                   <div>
-                    <p className="text-sm font-semibold text-blue-800">Skills:</p>
-                    <ul className="list-disc ml-6 text-gray-700">
+                    <p className="text-sm font-semibold text-blue-800"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >Skills:</p>
+                    <ul className="list-disc ml-6 text-gray-700"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >
                       {activity.skills.map((skill, index) => (
                         <li key={index}>{skill.name} - Level {skill.level}</li>
                       ))}
@@ -457,17 +529,28 @@ useEffect(() => {
                   </div>
                   {activity.fileUrl && (
                     <div className="mt-2">
-                      <a href={activity.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                        View Attached File
+                      <a href={activity.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline"
+                        style={{
+                          fontFamily: '"Times New Roman", Times, serif',
+                        }}
+                      >View Attached File
                       </a>
                     </div>
                   )}
-                  <p className={`mt-2 text-sm ${getStatusClass(activity.status)}`}>{activity.status}</p>
+                  <p className={`mt-2 text-sm ${getStatusClass(activity.status)}`}
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                  >{activity.status}</p>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500">No approved activities</p>
+            <p className="text-gray-500"
+              style={{
+                fontFamily: '"Times New Roman", Times, serif',
+              }}
+            >No approved activities</p>
           )}
         </div>
       </div>
@@ -475,12 +558,20 @@ useEffect(() => {
       {/* Add Activity Form */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
-          <div className="bg-white rounded-2xl p-4 shadow-2xl max-w-2xl w-full">
-            <h2 className="text-2xl font-bold mb-4 text-red-600">Add Activity</h2>
+          <div className="bg-white rounded-3xl p-4 shadow-2xl max-w-2xl w-full">
+            <h2 className="text-2xl mb-4 text-red-600"
+            style={{
+              fontFamily: '"Times New Roman", Times, serif',
+              fontWeight: 'bold',
+            }}
+            >Add Activity</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="name">
-                  Activity Name
+                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="name"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
+                >Activity Name
                 </label>
                 <input
                   type="text"
@@ -493,8 +584,11 @@ useEffect(() => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="description">
-                  Description
+                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="description"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
+                >Description
                 </label>
                 <textarea
                   id="description"
@@ -506,7 +600,11 @@ useEffect(() => {
                 ></textarea>
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-1 text-blue-700">Skills</label>
+                <label className="block text-sm font-semibold mb-1 text-blue-700"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
+                >Skills</label>
                 {activityData.skills.map((skill, index) => (
                   <div key={index} className="flex items-center mb-2">
                     <select
@@ -514,15 +612,23 @@ useEffect(() => {
                       onChange={(e) => handleSkillChange(index, 'name', e.target.value)}
                       required
                       className="w-2/3 px-3 py-1 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300 mr-2"
+                        style={{
+                          fontFamily: '"Times New Roman", Times, serif',
+                        }}
                     >
-                      <option value="">Select a skill</option>
+                      <option value=""
+                      >Select a skill</option>
                       {predefinedSkills.map((skillName, idx) => (
                         <option key={idx} value={skillName}>
                           {skillName}
                         </option>
                       ))}
                     </select>
-                    <label className="block text-sm font-semibold mb-1 text-blue-700">Level of Skill</label>
+                    <label className="block text-sm font-semibold mb-1 text-blue-700"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >Level of Skill</label>
                     <input
                       type="number"
                       min="1"
@@ -531,13 +637,18 @@ useEffect(() => {
                       onChange={(e) => handleSkillChange(index, 'level', e.target.value)}
                       required
                       className="w-1/3 px-3 py-1 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300 mr-2"
+                        style={{
+                          fontFamily: '"Times New Roman", Times, serif',
+                        }}
                     />
                     <button
                       type="button"
                       onClick={() => removeSkill(index)}
                       className="text-red-500 underline text-sm"
-                    >
-                      Remove
+                        style={{
+                          fontFamily: '"Times New Roman", Times, serif',
+                        }}
+                    >Remove
                     </button>
                   </div>
                 ))}
@@ -545,13 +656,18 @@ useEffect(() => {
                   type="button"
                   onClick={addSkill}
                   className="text-blue-500 underline text-sm"
-                >
-                  Add Skill
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                >Add Skill
                 </button>
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="file">
-                  Attach Certificate File
+                <label className="block text-sm font-semibold mb-1 text-blue-700" htmlFor="file"
+                  style={{
+                    fontFamily: '"Times New Roman", Times, serif',
+                  }}
+                >Attach Certificate File
                 </label>
                 <input
                   type="file"
@@ -559,6 +675,9 @@ useEffect(() => {
                   name="file"
                   onChange={handleFileChange}
                   className="w-full px-3 py-1 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
                 />
               </div>
               <div className="flex justify-end">
@@ -566,18 +685,26 @@ useEffect(() => {
                   type="button"
                   onClick={() => setShowModal(false)}
                   className="text-gray-500 underline text-sm mr-3"
-                >
-                  Cancel
+                   style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                    }}
+                >Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-red-600 text-white text-lg rounded-full px-5 py-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-                >
-                  Submit
+                  className="bg-red-600 text-white text-lg rounded-full px-4 py-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+                    style={{
+                      fontFamily: '"Times New Roman", Times, serif',
+                      transition: 'background-color 0.1s', // Smooth transition for hover effect
+                    }}
+                >Submit
                 </button>
                 {errorMessage && (
-                    <p className="bg-red-100 text-red-700 border border-red-300 rounded-md p-2 mt-2 text-center font-bold">
-                        {errorMessage}
+                    <p className="bg-red-100 text-red-700 border border-red-300 rounded-md p-2 mt-2 text-center font-bold"
+                      style={{
+                        fontFamily: '"Times New Roman", Times, serif',
+                      }}
+                    >{errorMessage}
                     </p>
                 )}
               </div>

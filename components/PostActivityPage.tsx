@@ -219,7 +219,6 @@ const PostActivityPage: React.FC = () => {
             marginTop: '100px',
             color: '#ffffff', // Text color is now white
             fontFamily: '"Times New Roman", Times, serif',
-            fontWeight: 'bold',
             textShadow: `
               0 0 5px #00ffee, 
               0 0 10px #00ffee, 
@@ -245,7 +244,7 @@ const PostActivityPage: React.FC = () => {
                 ` // Aura effect
               }}>
                         <h3
-                  className="text-lg text-white mb-2"
+                  className="text-lg font-bold text-white mb-2"
                   style={{
                     fontFamily: '"Times New Roman", Times, serif',
                     marginTop: '-10px', // Adjust this value as needed
@@ -283,7 +282,7 @@ const PostActivityPage: React.FC = () => {
                   0 0 20px #00ffee
                 ` // Aura effect
               }}>
-              <h4 className="text-lg mb-2"
+              <h4 className="text-lg mb-2 font-bold"
               style={{
                 marginTop: '-5px',
                 color: '#ffffff', // Text color is now white
@@ -317,7 +316,7 @@ const PostActivityPage: React.FC = () => {
                   0 0 20px #00ffee
                 ` // Aura effect
               }}>
-                <h3 className="text-lg mb-2"
+                <h3 className="text-lg mb-2 font-bold"
                 style={{
                   marginTop: '1px',
                   color: '#ffffff', // Text color is now white
@@ -380,7 +379,7 @@ const PostActivityPage: React.FC = () => {
                   0 0 20px #00ffee
                 ` // Aura effect
               }}>
-                <h3 className="text-lg mb-2"
+                <h3 className="text-lg mb-2 font-bold"
                 style={{
                   marginTop: '1px',
                   color: '#ffffff', // Text color is now white
@@ -467,7 +466,7 @@ const PostActivityPage: React.FC = () => {
                   0 0 20px #00ffee
                 ` // Aura effect
               }}>
-                <h3 className="text-lg mb-4"
+                <h3 className="text-lg mb-4 font-bold"
                 style={{
                   fontFamily: '"Times New Roman", Times, serif',
                   marginTop: '-5px', // Adjust this value as needed
