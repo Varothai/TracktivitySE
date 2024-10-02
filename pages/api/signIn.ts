@@ -120,7 +120,7 @@ export default async function handler(
     secure: process.env.NODE_ENV === "production",
     path: "/",
     //change to your hostname in production
-    domain: "localhost",
+    domain: process.env.NODE_ENV === "production" ? ".tracktivity.netlify.app" : "localhost",
   });
 
   return res.json({ ok: true });
