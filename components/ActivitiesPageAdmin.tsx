@@ -117,7 +117,7 @@ const ActivitiesPage: React.FC = () => {
   const handleDateChange = (index: number, newDate: string) => {
     if (formValues && formValues.dates) {
       const updatedDates = [...formValues.dates];
-      updatedDates[index] = newDate; // Update the specific date
+      updatedDates[index] = new Date(newDate); // Convert the string to a Date object
       setFormValues({
         ...formValues,
         dates: updatedDates, // Update the dates in formValues
