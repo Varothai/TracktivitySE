@@ -37,6 +37,7 @@ async function getOAuthAccessTokenAsync(
     );
     return response.data.access_token;
   } catch (err) {
+    console.log(err);
     return null;
   }
 }

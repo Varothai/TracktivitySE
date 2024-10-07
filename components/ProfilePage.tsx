@@ -418,7 +418,7 @@ useEffect(() => {
         <div className="flex-1">
           <h2 className="text-2xl mb-4 text-blue-900"
           style={{ fontFamily: '"Times New Roman", Times, serif', fontWeight:'bold' }}>Skills Radar Chart</h2>
-          <div className="bg-white p-4 rounded-lg shadow-lg">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-blue-300 transition-transform transform hover:scale-105">
             <RadarChart skills={allSkills} />
           </div>
         </div>
