@@ -36,7 +36,7 @@ export default function MePage() {
     <div className="p-3">
       {userData?.role === "student" && (
         <div>
-          <AdminPage />
+          <StudentPage />
         </div>
       )}
       {userData?.itaccounttype_EN === "MIS Employee" && (
