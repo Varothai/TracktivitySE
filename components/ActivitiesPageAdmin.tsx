@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { collection, onSnapshot, QueryDocumentSnapshot, DocumentData, updateDoc, doc } from 'firebase/firestore';
-import { db } from '../firestore/firebase';
+import { collection, onSnapshot, QueryDocumentSnapshot, DocumentData, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { db, firestore } from '../firestore/firebase';
 import { formatDate } from '../utils/formatDate';
 import { skillColors } from '../utils/skillColors';
 import axios from 'axios';
@@ -33,6 +33,8 @@ const ActivitiesPage: React.FC = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [formValues, setFormValues] = useState<Omit<Activity, 'id'> | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activityToDelete, setActivityToDelete] = useState<string | null>(null);
   const router = useRouter();
 
   const signOut = async () => {
@@ -153,6 +155,42 @@ const ActivitiesPage: React.FC = () => {
       setFormValues({ ...formValues, skills: newSkills });
     }
   };  
+
+  // Function to handle the Delete button click and show confirmation modal
+  const handleDeleteClick = (activityId: string) => {
+      setActivityToDelete(activityId); // store the activity id
+      setIsModalOpen(true); // open the modal
+  };
+
+  // Function to confirm and delete the activity
+  const confirmDelete = async () => {
+    try {
+      if (activityToDelete) {
+        // Ensure the activity is deleted from Firestore (or your database)
+        await deleteDoc(doc(db, 'AdminActivities', activityToDelete));
+  
+        // Update the state to remove the activity from the UI
+        setActivities((prevActivities: Activity[]) =>
+          prevActivities.filter((activity: { id: string; }) => activity.id !== activityToDelete)
+        );
+  
+        console.log('Activity successfully deleted');
+      }
+    } catch (error) {
+      console.error('Error removing activity: ', error);
+    } finally {
+      setIsModalOpen(false); // Close the modal
+      setActivityToDelete(null); // Clear the activity to delete
+    }
+  };
+  
+
+  // Function to close the modal without deleting
+  const cancelDelete = () => {
+    setIsModalOpen(false);
+    setActivityToDelete(null); // clear the activity to delete
+  };
+  
   
   const filteredActivities = filter === ''
     ? activities
@@ -246,46 +284,47 @@ const ActivitiesPage: React.FC = () => {
 
         {/* Activities list on the right */}
         <div className="w-3/4 pl-6">
-            <h2 className="text-3xl font-bold text-white mb-6">Activities</h2>
-            {filteredActivities.length === 0 ? (
-              <p className="text-gray-300">No activities available.</p>
-            ) : (
-              <div className="space-y-6">
-                {filteredActivities.map(activity => (
-                  <div key={activity.id} className="bg-white bg-opacity-80 border border-gray-200 shadow-lg rounded-lg p-6 flex flex-col md:flex-row items-start">
-                    <div className="flex-1 md:mr-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-3">{activity.name}</h3>
-                      <p className="text-gray-700 mb-3">{activity.description}</p>
-                      <div className="text-gray-600 mb-4">
-                        <strong className="text-gray-800">Dates:</strong>
-                        <ul className="list-disc list-inside">
-                          {activity.dates && activity.dates.map((date, index) => (
-                            <li key={index}>{formatDate(date.toString())}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="mb-4">
-                        <strong className="text-gray-800">Skills:</strong>
-                        <ul className="list-disc list-inside text-gray-600">
-                          {activity.skills.map((skill, index) => (
-                            <li key={index} className="mb-1 flex items-center">
-                              <span className={`w-4 h-4 rounded-full ${skillColors[skill.name]} mr-2`}></span>
-                              <span className="font-medium">{skill.name}</span> - Level: {skill.level}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <button onClick={() => handleEditClick(activity)} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Edit</button>
-                    </div>
-                    <div className="flex flex-wrap justify-center space-x-4 space-y-4">
-                      {activity.imageUrls.map((url, index) => (
-                        <div key={index} className="relative group w-64 h-64">
-                          <img
-                            src={url}
-                            alt={`Activity Image ${index + 1}`}
-                            className="w-full h-full object-cover border border-gray-300 rounded-lg shadow-sm transition-transform transform group-hover:scale-105"
-                          />
-                        </div>
+      <h2 className="text-3xl font-bold text-white mb-6">Activities</h2>
+      {filteredActivities.length === 0 ? (
+        <p className="text-gray-300">No activities available.</p>
+      ) : (
+        <div className="space-y-6">
+          {filteredActivities.map(activity => (
+            <div key={activity.id} className="bg-white bg-opacity-80 border border-gray-200 shadow-lg rounded-lg p-6 flex flex-col md:flex-row items-start">
+              <div className="flex-1 md:mr-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">{activity.name}</h3>
+                <p className="text-gray-700 mb-3">{activity.description}</p>
+                <div className="text-gray-600 mb-4">
+                  <strong className="text-gray-800">Dates:</strong>
+                  <ul className="list-disc list-inside">
+                    {activity.dates && activity.dates.map((date, index) => (
+                      <li key={index}>{formatDate(date.toString())}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mb-4">
+                  <strong className="text-gray-800">Skills:</strong>
+                  <ul className="list-disc list-inside text-gray-600">
+                    {activity.skills.map((skill, index) => (
+                      <li key={index} className="mb-1 flex items-center">
+                        <span className={`w-4 h-4 rounded-full ${skillColors[skill.name]} mr-2`}></span>
+                        <span className="font-medium">{skill.name}</span> - Level: {skill.level}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button onClick={() => handleEditClick(activity)} className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Edit</button>
+                <button onClick={() => handleDeleteClick(activity.id)} className="bg-red-500 text-white font-semibold py-2 px-4 rounded ml-2">Delete</button>
+              </div>
+              <div className="flex flex-wrap justify-center space-x-4 space-y-4">
+                {activity.imageUrls.map((url, index) => (
+                  <div key={index} className="relative group w-64 h-64">
+                    <img
+                      src={url}
+                      alt={`Activity Image ${index + 1}`}
+                      className="w-full h-full object-cover border border-gray-300 rounded-lg shadow-sm transition-transform transform group-hover:scale-105"
+                    />
+                  </div>
                       ))}
                     </div>
                   </div>
@@ -295,6 +334,20 @@ const ActivitiesPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Confirm Deletion</h3>
+            <p className="text-gray-700 mb-6">Are you sure you want to delete this activity? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <button onClick={cancelDelete} className="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">Cancel</button>
+              <button onClick={confirmDelete} className="bg-red-500 text-white font-semibold py-2 px-4 rounded">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit Activity Modal */}
         {selectedActivity && (
@@ -417,8 +470,7 @@ const ActivitiesPage: React.FC = () => {
           </div>
       )}
 
-
-    </div>
+     </div>
   );
 };
 
